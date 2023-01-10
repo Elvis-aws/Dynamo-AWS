@@ -7,7 +7,7 @@ session = requests.Session()
 logger = api_logger.loggen()
 
 
-def get_request(url, timeout=None, retries: int = None, retry_list: list = None, **kwargs):
+def get_request(url, params=None, timeout=None, retries: int = None, retry_list: list = None, **kwargs):
     try:
         logger.info('Configuring retry')
         retry = __configure_retires(retries=retries, retry_list=retry_list)
@@ -16,7 +16,7 @@ def get_request(url, timeout=None, retries: int = None, retry_list: list = None,
         session.mount('http://', HTTPAdapter(max_retries=retry))
 
         logger.info('Executing get request')
-        response = session.get(url=url, params=kwargs, headers=kwargs, timeout=timeout)
+        response = session.get(url=url, params=params, headers=kwargs, timeout=timeout)
         logger.info('Request successful')
         return response
 
@@ -29,7 +29,7 @@ def get_request(url, timeout=None, retries: int = None, retry_list: list = None,
         return error
 
 
-def delete_request(url, timeout=None, retries: int = None, retry_list: list = None, **kwargs):
+def delete_request(url, params, timeout=None, retries: int = None, retry_list: list = None, **kwargs):
     try:
         logger.info('Configuring retry')
         retry = __configure_retires(retries=retries, retry_list=retry_list)
@@ -38,7 +38,7 @@ def delete_request(url, timeout=None, retries: int = None, retry_list: list = No
         session.mount('http://', HTTPAdapter(max_retries=retry))
 
         logger.info('Executing get request')
-        response = session.delete(url=url, params=kwargs, headers=kwargs, timeout=timeout)
+        response = session.delete(url=url, params=params, headers=kwargs, timeout=timeout)
         logger.info('Request successful')
         return response
 
@@ -51,7 +51,7 @@ def delete_request(url, timeout=None, retries: int = None, retry_list: list = No
         return error
 
 
-def post_request(url, timeout=None, retries: int = None, retry_list: list = None, **kwargs):
+def post_request(url, data, timeout=None, retries: int = None, retry_list: list = None, **kwargs):
     try:
         logger.info('Configuring retry')
         retry = __configure_retires(retries=retries, retry_list=retry_list)
@@ -60,7 +60,7 @@ def post_request(url, timeout=None, retries: int = None, retry_list: list = None
         session.mount('http://', HTTPAdapter(max_retries=retry))
 
         logger.info('Executing post request')
-        response = session.post(url=url, data=kwargs, params=kwargs, headers=kwargs, timeout=timeout)
+        response = session.post(url=url, json=data, params=kwargs, headers=kwargs, timeout=timeout)
         logger.info('Request successful')
         return response
 
@@ -73,7 +73,7 @@ def post_request(url, timeout=None, retries: int = None, retry_list: list = None
         return error
 
 
-def put_request(url, timeout=None, retries: int = None, retry_list: list = None, **kwargs):
+def put_request(url, data, timeout=None, retries: int = None, retry_list: list = None, **kwargs):
     try:
         logger.info('Configuring retry')
         retry = __configure_retires(retries=retries, retry_list=retry_list)
@@ -82,7 +82,7 @@ def put_request(url, timeout=None, retries: int = None, retry_list: list = None,
         session.mount('http://', HTTPAdapter(max_retries=retry))
 
         logger.info('Executing put request')
-        response = session.put(url=url, data=kwargs, params=kwargs, headers=kwargs, timeout=timeout)
+        response = session.put(url=url, json=data, params=kwargs, headers=kwargs, timeout=timeout)
         logger.info('Request successful')
         return response
 

@@ -16,11 +16,9 @@ immutable
 represented with a closed brackets
 
 # python conversions
-1) json.loads() => Converts a string into a dictionary
-2) json.dumbs() => Objects have to be stored in a file
-3) json.dumb() => Objects are required to be in string format
+1) json.loads() => is used to convert the JSON String document into the Python dictionary
+2) json.dumbs() => used to write Python serialized object as string formatted data into a file
 
+3) json.dumb() => used to write Python serialized object as JSON formatted data into a file
+4) json.load() => is used to read the JSON document from file and The json
 
-http://216.10.245.166/Library/Addbook.php
-http://216.10.245.166/Library/GetBook.php
-par AuthorName 

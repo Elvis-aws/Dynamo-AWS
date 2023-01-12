@@ -16,7 +16,7 @@ def test_delete_employee():
     response = requests_module.delete_request(url, params=params, retries=3, retry_list=[500])
     _response_msg = response.text
     _status_code = response.status_code
-    assert _status_code == 200
+    assert _status_code == 202
     assert _response_msg == f"Successfully deleted Employee {_employee_name}"
     print(_response_msg)
 

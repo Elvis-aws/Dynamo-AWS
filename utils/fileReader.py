@@ -2,10 +2,13 @@ import json
 import os
 from pathlib import Path
 
+from utils.rapper_function import func_loger
+
 BASE_PATH = Path.cwd().joinpath('data')
 ROOT_DIR = os.path.realpath(os.path.join(os.path.dirname(__file__), ".."))
 
 
+@func_loger
 def load_files(data_file="headers"):
     """Use this function in order to load a json file in the data folder"""
     data_folder = {}
@@ -17,6 +20,7 @@ def load_files(data_file="headers"):
     return data_folder[f"{data_file}"]
 
 
+@func_loger
 def write_files(payload, data_file="headers"):
     """Use this function in order to write to a json file in the data folder"""
     try:
@@ -33,6 +37,7 @@ def read_file(file_name):
         return json.load(f)
 
 
+@func_loger
 def get_file_with_json_extension(file_name):
     if '.json' in file_name:
         path = BASE_PATH.joinpath(file_name)
@@ -41,6 +46,7 @@ def get_file_with_json_extension(file_name):
     return path
 
 
+@func_loger
 def update_json_file(_file_name, _id=None, _name=None, _address=None, _gender=None, _age=None):
     try:
         """load file to modify"""

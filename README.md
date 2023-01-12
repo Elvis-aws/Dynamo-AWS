@@ -1,24 +1,51 @@
 # Python-API-Framework
 
-# Data Types
-1) Numeric
-int => whole numbers
-long => deprecated
-float => decimals
-complex => 100+3j Mixed data types
-2) String
-3) List
-not-immutable
-set of different data types
-represented with a square brackets
-4) Tuple
-immutable
-represented with a closed brackets
 
-# python conversions
-1) json.loads() => is used to convert the JSON String document into the Python dictionary
-2) json.dumbs() => used to write Python serialized object as string formatted data into a file
+# Run application
+    # source env/bin/bin/bin/activate 
+    # cd API
+    # pip3 freeze > requirements.txt
+    # docker-compose up -d
+    # python3 application.py
 
-3) json.dumb() => used to write Python serialized object as JSON formatted data into a file
-4) json.load() => is used to read the JSON document from file and The json
+
+# Deploy to Elastic beanstalk
+    # Rename main file to application.py
+    # Rename flask app to application
+    # Create requirements file
+    # Create .ebextensions folder
+
+# EB CLI
+    Remove .elasticbeanstalk folder to reset eb init
+    pip3 install awsebcli
+    virtual environment
+    Commands
+    eb abort
+    eb appversion
+    eb clone
+    eb codesource
+    eb config
+    eb console
+    eb create
+    eb deploy
+    eb events
+    eb health
+    eb init
+    eb labs
+    eb list
+    eb local
+    eb logs
+    eb open
+    eb platform
+    eb printenv
+    eb restore
+    eb scale
+    eb setenv
+    eb ssh
+    eb status
+    eb swap
+    eb tags
+    eb terminate
+    eb upgrade
+    eb use
 

@@ -34,11 +34,11 @@ def create_employee():
                     emp_id = items[0]['id']
                     if employee_id == emp_id:
                         application.logger.info('Employee already exist')
-                        return f'Employee with ID: {employee_id} already exist'
+                        return f'Employee with ID: {employee_id} already exist', 409
                 response = employee_table.put_item(Item=all_employees)
                 application.logger.info('Employee successfully added')
 
-        return f'Successfully created Employees: {employee_names}'
+        return f'Successfully created Employees: {employee_names}', 201
     except ClientError as ex:
         application.logger.critical(ex.response)
         return ex.response
@@ -48,12 +48,14 @@ def create_employee():
 def update_employee():
     try:
         request_data = request.get_json()
+        employee_names = []
         if request.method == 'POST':
             table_name = table_context[0]['name']
             employee_table = dynamodb.Table(table_name)
 
             for all_employees in request_data:
                 employee_name = all_employees['name']
+                employee_names.append(employee_name)
                 employee_id = all_employees['id']
                 employee_age = all_employees['age']
                 employee_address = all_employees['address']
@@ -63,7 +65,7 @@ def update_employee():
                 items = employee_list['Items']
                 if len(items) == 0:
                     application.logger.info('Employee does not exist exist')
-                    return f'Employee with ID: {employee_id} does not exist'
+                    return f'Employee with ID: {employee_id} does not exist', 200
                 response = employee_table.update_item(
                     Key={
                         'id': employee_id,
@@ -81,10 +83,11 @@ def update_employee():
 
                 )
                 application.logger.info('Successfully updated employee')
-            return f'Successfully updated Employee: {employee_name}'
+        return f'Successfully updated Employee: {employee_names}', 200
     except ClientError as ex:
         application.logger.critical(ex.response)
         return ex.response
+
 
 @application.route('/AllEmployees', methods=['GET'])
 def get_employees():
@@ -98,9 +101,9 @@ def get_employees():
                 Select="ALL_ATTRIBUTES"
             )
             if employee_list['Count'] == 0:
-                return f"There are no Employees in the Data Base"
+                return f"There are no Employees in the Data Base", 200
             else:
-                return f"The following employees exist in the Bata base: {employee_list}"
+                return f"The following employees exist in the Bata base: {employee_list}", 200
     except ClientError as ex:
         application.logger.critical(ex.response)
         return ex.response
@@ -120,14 +123,14 @@ def get_employee():
                 KeyConditionExpression=Key('id').eq(int(request_data_id))
             )
             if employee_list['Count'] == 0:
-                return f"There is no Employee in the Data Base with name: {request_data_name}"
+                return f"There is no Employee in the Data Base with name: {request_data_name}", 200
             else:
                 for employee in employee_list['Items']:
                     if employee['id'] == int(request_data_id):
                         application.logger.info('Successfully retrieved employee')
                         return f'Successfully retrieved Employee: {employee}'
                     else:
-                        return f"No employee exist with name: {employee['name']}"
+                        return f"No employee exist with name: {employee['name']}", 200
     except ClientError as ex:
         application.logger.critical(ex.response)
         return ex.response
@@ -157,7 +160,7 @@ def delete_employee():
             items = employee_list['Items']
             if len(items) == 0:
                 application.logger.info(f'No employees exist with id: {request_data_id}')
-                return f'No employees exist with id: {request_data_id}'
+                return f'No employees exist with id: {request_data_id}', 200
 
             response = employee_table.delete_item(
                 Key={
@@ -166,7 +169,7 @@ def delete_employee():
                 }
             )
             application.logger.info('Successfully deleted employee')
-            return f'Successfully deleted Employee {request_data_name}'
+            return f'Successfully deleted Employee {request_data_name}', 202
     except ClientError as ex:
         application.logger.critical(ex.response)
         return ex.response

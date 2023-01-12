@@ -3,6 +3,7 @@ import names
 import random_address
 from utils.fileReader import load_files, update_json_file
 import random
+
 from utils.readProperties import ReadConfig
 
 
@@ -27,7 +28,7 @@ def test_create_new_employees():
     _response_msg = response.text
     _employee_name_One = _data[0]['name']
     _status_code = response.status_code
-    assert _status_code == 200
+    assert _status_code == 201
     assert _response_msg == f"Successfully created Employees: ['{_employee_name_One}']"
     print(_response_msg)
 
@@ -40,6 +41,6 @@ def test_verify_employees_exist():
     _response_msg = response.text
     _employee_id_One = data[0]['id']
     _status_code = response.status_code
-    assert _status_code == 200
+    assert _status_code == 409
     assert _response_msg == f"Employee with ID: {_employee_id_One} already exist"
     print(_response_msg)

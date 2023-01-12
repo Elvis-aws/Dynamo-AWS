@@ -1,6 +1,21 @@
 version: "3.5"
 
 services:
+
+#  pythonapiframework:
+#    hostname: api
+#    container_name: local-api
+#    image: pythonapiframework
+#    depends_on:
+#      - dynamo
+#    networks:
+#      - local-dynamodb
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile
+#    ports:
+#      - "9001:9001"
+
   dynamo:
     hostname: dynamodb
     container_name: local-dynamodb

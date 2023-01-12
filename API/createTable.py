@@ -20,7 +20,7 @@ def create_dax_table(table_name, dyn_resource=None):
                 dyn_resource = boto3.resource('dynamodb', endpoint_url='http://localhost:8000')
                 Context.dynamodb_local = dyn_resource
             else:
-                dyn_resource = boto3.resource('dynamodb')
+                dyn_resource = boto3.resource('dynamodb', region_name='eu-west-2')
                 Context.dynamodb_local = dyn_resource
             for table in dyn_resource.tables.all():
                 all_tables.append(table.name)

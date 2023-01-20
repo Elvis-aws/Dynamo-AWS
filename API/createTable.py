@@ -16,7 +16,7 @@ def create_dax_table(table_name, dyn_resource=None):
         dax_table_context = []
         all_tables = []
         if dyn_resource is None:
-            if local_dynamodb:
+            if local_dynamodb is True:
                 dyn_resource = boto3.resource('dynamodb', endpoint_url='http://localhost:8000')
                 Context.dynamodb_local = dyn_resource
             else:

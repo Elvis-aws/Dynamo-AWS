@@ -6,10 +6,14 @@ services:
     depends_on:
       dynamo:
        condition: service_healthy
-    image: dockerelvis/flask-api-demo:0.0.1.RELEASE
+    image: dockerelvis/flask-demo:latest
+    networks:
+      - local-dynamodb
     env_file: variables.env
     ports:
       - "9002:9001"
+    links:
+      - dynamo
     volumes:
       - ~/.aws/:/root/.aws:ro
 

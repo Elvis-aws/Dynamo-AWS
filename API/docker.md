@@ -65,7 +65,7 @@ docker build -t dockerelvis/flask-api-demo:0.0.1.RELEASE .
 ################################
 # -d detached mode so you can access terminal
 # p port mapping host:container
-# http://localhost:3000
+# http://localhost:9002
 docker container run -d -p 9002:9001 dockerelvis/flask-api-demo:0.0.1.RELEASE
 docker container run -e AWS_PROFILE=default -v ~/.aws/:/root/.aws:ro -d -p 9002:9001 dockerelvis/flask-api-demo:0.0.1.RELEASE 
 docker container run -d -p 9002:9001 dockerelvis/flask-api-demo:0.0.1.RELEASE -v ~/.aws/:/root/.aws:ro -e AWS_PROFILE=default
@@ -82,3 +82,4 @@ docker container stop <container name>
 # Docker push image
 ################################
 docker push dockerelvis/flask-api-demo:0.0.1.RELEASE
+docker push dockerelvis/flask-demo:latest

@@ -69,18 +69,7 @@ docker build -t dockerelvis/flask-api-demo:0.0.1.RELEASE .
 docker container run -d -p 9002:9001 dockerelvis/flask-api-demo:0.0.1.RELEASE
 docker container run -e AWS_PROFILE=default -v ~/.aws/:/root/.aws:ro -d -p 9002:9001 dockerelvis/flask-api-demo:0.0.1.RELEASE 
 docker container run -d -p 9002:9001 dockerelvis/flask-api-demo:0.0.1.RELEASE -v ~/.aws/:/root/.aws:ro -e AWS_PROFILE=default
-
-
-docker container run -e AWS_ACCESS_KEY_ID=AKIA5TEEY4RPPQ4HD46H -e AWS_SECRET_ACCESS_KEY=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 -e AWS_DEFAULT_REGION=eu-west-2 -d -p 9002:9001 dockerelvis/flask-api-demo:0.0.1.RELEASE
-#ENV AWS_ACCESS_KEY_ID=AKIA5TEEY4RPPQ4HD46H                                                                                                127 ✘  bin   13:58:48
-#ENV AWS_SECRET_ACCESS_KEY=1NYMUizrYOQiz4gJF3ytZNW284u3bQTi4W/8p86Q
-#ENV AWS_DEFAULT_REGION=eu-west-2
-export AWS_DEFAULT_PROFILE=default
-
-
-
-
-
+docker container run -e AWS_ACCESS_KEY_ID=xxx -e AWS_SECRET_ACCESS_KEY=xxx -e AWS_DEFAULT_REGION=eu-west-2 -d -p 9002:9001 dockerelvis/flask-api-demo:0.0.1.RELEASE
 ################################
 # View running containers
 ################################

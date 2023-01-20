@@ -46,3 +46,8 @@
     eb terminate
     eb upgrade
     eb use
+
+
+aws configure list-profiles
+
+

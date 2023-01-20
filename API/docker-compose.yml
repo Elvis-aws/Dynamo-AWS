@@ -1,23 +1,19 @@
-version: "3.5"
+version: "3.9"
 
 services:
-
-#  pythonapiframework:
-#    hostname: api
-#    container_name: local-api
-#    image: pythonapiframework
-#    depends_on:
-#      - dynamo
-#    networks:
-#      - local-dynamodb
-#    build:
-#      context: .
-#      dockerfile: ./Dockerfile
-#    ports:
-#      - "9001:9001"
+  flask-api:
+    container_name: local-flask-api
+    depends_on:
+      dynamo:
+       condition: service_healthy
+    image: dockerelvis/flask-api-demo:0.0.1.RELEASE
+    env_file: variables.env
+    ports:
+      - "9002:9001"
+    volumes:
+      - ~/.aws/:/root/.aws:ro
 
   dynamo:
-    hostname: dynamodb
     container_name: local-dynamodb
     image: amazon/dynamodb-local
     networks:
@@ -28,6 +24,11 @@ services:
       - dynamodata:/home/dynamodblocal
     working_dir: /home/dynamodblocal
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ."
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8000/shell/ || exit 0" ]
+      interval: 1s
+      timeout: 10s
+      retries: 3
 
 networks:
   local-dynamodb:

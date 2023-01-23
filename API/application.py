@@ -89,7 +89,7 @@ def update_employee():
         return ex.response
 
 
-@application.route('/AllEmployees', methods=['GET'])
+@application.route('/Employee/allEmployees', methods=['GET'])
 def get_employees():
     try:
         if request.method == 'GET':
@@ -136,7 +136,7 @@ def get_employee():
         return ex.response
 
 
-@application.route('/index', methods=['GET'])
+@application.route('/Employee/index', methods=['GET'])
 def get_html():
     try:
         if request.method == 'GET':
@@ -175,7 +175,7 @@ def delete_employee():
         return ex.response
 
 
-@application.route('/Employee_DB', methods=['DELETE'])
+@application.route('/Employee/Employee_DB', methods=['DELETE'])
 def delete_employee_db():
     try:
         table_name = table_context[0]['name']

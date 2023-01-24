@@ -103,7 +103,7 @@ def get_employees():
             if employee_list['Count'] == 0:
                 return f"There are no Employees in the Data Base", 200
             else:
-                return f"The following employees exist in the Bata base: {employee_list}", 200
+                return f"The following employees exist in the Data base: {employee_list}", 200
     except ClientError as ex:
         application.logger.critical(ex.response)
         return ex.response

@@ -1,4 +1,5 @@
 from locust import SequentialTaskSet, task, tag, HttpUser, between
+import logging
 
 
 class EmployeeTest(SequentialTaskSet):
@@ -9,7 +10,8 @@ class EmployeeTest(SequentialTaskSet):
             if response.status_code == 200 and ("Successfully retrieved Employee" in response.text):
                 response.success()
             else:
-                response.failure("Test failed")
+                logging.error(response)
+                response.failure("Get employee Test failed")
 
     @task
     @tag('emp')
@@ -18,7 +20,8 @@ class EmployeeTest(SequentialTaskSet):
             if response.status_code == 200 and response.elapsed.total_seconds() < 2.0:
                 response.success()
             else:
-                response.failure("Test failed")
+                logging.error(response)
+                response.failure("Get employee response time Test failed")
 
     def on_stop(self):
         self.client.cookies.clear()
@@ -30,10 +33,11 @@ class EmployeesTest(SequentialTaskSet):
     @tag('emps')
     def get_all_employees(self):
         with self.client.get("/allEmployees", catch_response=True) as response:
-            if response.status_code == 200 and ("The following employees exist in the Bata base" in response.text):
+            if response.status_code == 200 and ("The following employees exist in the Data base" in response.text):
                 response.success()
             else:
-                response.failure("test failed")
+                logging.error(response)
+                response.failure("Get all employee test failed")
 
     @task
     @tag('emps')
@@ -42,7 +46,8 @@ class EmployeesTest(SequentialTaskSet):
             if response.status_code == 200 and response.elapsed.total_seconds() < 2.0:
                 response.success()
             else:
-                response.failure("test failed")
+                logging.error(response)
+                response.failure("Get all employee response time test failed")
 
     def on_stop(self):
         self.client.cookies.clear()

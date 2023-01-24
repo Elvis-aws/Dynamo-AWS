@@ -14,9 +14,14 @@ locust -f performance_test/locustfile.py -u 2 -r 1 -t 5s --headless --only-summa
 locust -f performance_test/locustfile.py -u 3 -r 2 -t 10s --headless --only-summary --tags emp
 locust -f performance_test/locustfile.py --config performance_test/locust.conf
 
+
+# Run Tests and log
+locust -f apiPerformanceTest/locustfile1.py --logfile logs/test_logs.log -u 2 -r 1 -t 5s --headless --only-summary
+
+
 # Distributed mode 
-locust --config performance_test/master.conf
-locust --config performance_test/worker.conf
+locust --config apiPerformanceTest/config/master.conf
+locust --config apiPerformanceTest/config/worker.conf
 
 # Docker compose
 docker-compose up --scale worker=4

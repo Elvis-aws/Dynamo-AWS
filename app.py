@@ -6,9 +6,9 @@ app = Flask(__name__)
 
 app.config.from_pyfile('config.py')
 table_name = app.config.get('DYNAMODB_TABLE_NAME')
-db = app.config.get('DYNAMODB_CONTEXT')
+local_context = app.config.get('DYNAMODB_CONTEXT')
 aws_context = app.config.get('DYNAMODB_AWS')
-db = aws_context
+db = local_context
 
 
 @app.route('/Employee', methods=['PUT'])
@@ -141,7 +141,7 @@ def get_html():
 
 @app.route('/healthcheck', methods=['GET'])
 def get_health_status():
-    return 200
+    return 'Application is in OK State'
 
 
 @app.route('/Employee', methods=['DELETE'])
@@ -173,6 +173,6 @@ def delete_employee():
 
 
 if __name__ == '__main__':
-    # export FLASK_APP=src/src/app.py
+    # export FLASK_APP=app.py
     # flask run
     app.run(debug=True, host='0.0.0.0')

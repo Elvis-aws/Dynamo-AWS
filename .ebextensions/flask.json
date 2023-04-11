@@ -7,7 +7,7 @@
     {
           "Namespace": "aws:elasticbeanstalk:container:python",
           "OptionName": "WSGIPath",
-          "Value": "src.app:app"
+          "Value": "app:app"
       }
   ,
     {

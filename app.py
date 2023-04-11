@@ -6,9 +6,8 @@ app = Flask(__name__)
 
 app.config.from_pyfile('config.py')
 table_name = app.config.get('DYNAMODB_TABLE_NAME')
-local_context = app.config.get('DYNAMODB_CONTEXT')
-aws_context = app.config.get('DYNAMODB_AWS')
-db = aws_context
+# db = app.config.get('DYNAMODB_CONTEXT')
+db = app.config.get('DYNAMODB_AWS')
 
 
 @app.route('/Employee', methods=['PUT'])

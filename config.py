@@ -34,7 +34,7 @@ def create_dynamo_local_context():
         except Exception as ex:
             raise ex
 
-        dyn_resource = boto3.resource('dynamodb',  endpoint_url='http://localhost:8000', region_name='eu-west-2')
+        dyn_resource = boto3.resource('dynamodb',  endpoint_url='http://localhost:8000')
         logging.info('Successfully return local context')
         return dyn_resource
     except ClientError as ex:

@@ -49,3 +49,13 @@
     eb upgrade
     eb use
 
+# Create table cli
+aws dynamodb create-table \
+    --table-name EmployeeTable \
+    --attribute-definitions \
+        AttributeName=id,AttributeType=N \
+        AttributeName=name,AttributeType=S \
+    --key-schema AttributeName=id,KeyType=HASH AttributeName=name,KeyType=RANGE \
+    --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
+    --table-class STANDARD \
+    --endpoint-url http://localhost:8000

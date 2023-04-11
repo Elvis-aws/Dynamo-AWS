@@ -1,0 +1,34 @@
+[
+    {
+        "Namespace": "aws:elasticbeanstalk:application:environment",
+        "OptionName": "PYTHONPATH",
+        "Value": "/var/app/current:$PYTHONPATH"
+    },
+    {
+          "Namespace": "aws:elasticbeanstalk:container:python",
+          "OptionName": "WSGIPath",
+          "Value": "app:app"
+      }
+  ,
+    {
+          "Namespace": "aws:autoscaling:launchconfiguration",
+          "OptionName": "SecurityGroups",
+          "Value": "launch-wizard-1"
+      }
+   ,
+    {
+          "Namespace": "aws:elb:listener:9000",
+          "OptionName": "ListenerProtocol",
+          "Value": "HTTP"
+      }
+    ,
+    {
+          "Namespace": "aws:elb:listener:9000",
+          "OptionName": "InstancePort",
+          "Value": "9000"
+      }, {
+            "Namespace": "aws:elasticbeanstalk:application",
+            "OptionName": "My Application Healthcheck URL",
+            "Value": "/healthcheck"
+        }
+]

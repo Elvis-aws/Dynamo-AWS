@@ -1,4 +1,4 @@
-from src import requests_module
+from request import requests_module
 from utils import helpers
 from utils.readProperties import ReadConfig
 

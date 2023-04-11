@@ -8,7 +8,7 @@ app.config.from_pyfile('config.py')
 table_name = app.config.get('DYNAMODB_TABLE_NAME')
 local_context = app.config.get('DYNAMODB_CONTEXT')
 aws_context = app.config.get('DYNAMODB_AWS')
-db = local_context
+db = aws_context
 
 
 @app.route('/Employee', methods=['PUT'])

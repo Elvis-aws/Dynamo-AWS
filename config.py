@@ -39,7 +39,7 @@ def create_dynamo_local_context():
 
 def create_dynamo_remote_context():
     try:
-        dyn_resource = boto3.resource('dynamodb')
+        dyn_resource = boto3.resource('dynamodb', region_name='eu-west-2')
         logging.info('Successfully return local context')
         return dyn_resource
     except ClientError as ex:

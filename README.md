@@ -4,6 +4,7 @@
 # Run application
     # source env/bin/bin/bin/activate 
     # cd API
+    # pip3 install -r requirements.txt
     # pip3 freeze > requirements.txt
     # docker-compose up -d
     # python3 application.py

@@ -1,15 +1,15 @@
 from botocore.exceptions import ClientError
 from flask import Flask, render_template, request
 from boto3.dynamodb.conditions import Key
-from .config import local_db, remote
+from .config import dynamo_context
 
 app = Flask(__name__)
 
 app.config.from_pyfile('config.py')
 table_name = app.config.get('DYNAMODB_TABLE_NAME')
 
-# db = local_db.create_dynamo_local_context()
-db = remote.create_dynamo_remote_context()
+# db = dynamo_context.create_dynamo_local_context()
+db = dynamo_context.create_dynamo_remote_context()
 
 
 @app.route('/Employee', methods=['PUT'])

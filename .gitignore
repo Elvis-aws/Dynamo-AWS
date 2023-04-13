@@ -7,4 +7,4 @@ src/.idea
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 env
-
+apiTests/.pytest_cache

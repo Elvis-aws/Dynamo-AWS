@@ -1,6 +1,9 @@
 # Python-API-Framework
 
 
+# Create virtual env
+- virtualenv env
+- source env/bin/activate
 # Run application
     # source env/bin/bin/bin/activate 
     # cd API

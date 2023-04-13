@@ -1,12 +1,9 @@
 from flask import Flask, render_template, request
-from botocore.exceptions import ClientError
 from boto3.dynamodb.conditions import Key
-
 app = Flask(__name__)
 
 app.config.from_pyfile('config.py')
 table_name = app.config.get('DYNAMODB_TABLE_NAME')
-# db = app.config.get('DYNAMODB_CONTEXT')
 db = app.config.get('DYNAMODB_AWS')
 
 

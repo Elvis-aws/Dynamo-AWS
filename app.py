@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 app.config.from_pyfile('config.py')
 table_name = app.config.get('DYNAMODB_TABLE_NAME')
+# db = app.config.get('DYNAMODB_LOCAL')
 db = app.config.get('DYNAMODB_AWS')
 
 
@@ -171,5 +172,6 @@ def delete_employee():
 
 if __name__ == '__main__':
     # export FLASK_APP=app.py
+    # export FLASK_ENV=development
     # flask run
     app.run(debug=True, host='0.0.0.0')

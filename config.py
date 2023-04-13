@@ -40,7 +40,8 @@ def create_dynamo_remote_context():
 #     except ClientError as ex:
 #         logging.error(f'An error occurred {ex.response}')
 #         raise ex.response
-
+#
+#
 # DYNAMODB_LOCAL = create_dynamo_local_context()
 
 

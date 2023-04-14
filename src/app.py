@@ -7,8 +7,8 @@ app = Flask(__name__)
 
 app.config.from_pyfile('config.py')
 table_name = app.config.get('DYNAMODB_TABLE_NAME')
-db = dynamo_context.create_dynamo_local_context()
-# db = dynamo_context.create_dynamo_remote_context()
+# db = dynamo_context.create_dynamo_local_context()
+db = dynamo_context.create_dynamo_remote_context()
 
 
 @app.route('/Employee', methods=['PUT'])

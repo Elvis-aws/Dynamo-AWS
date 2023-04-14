@@ -7,8 +7,8 @@ app = Flask(__name__)
 
 app.config.from_pyfile('config.py')
 table_name = app.config.get('DYNAMODB_TABLE_NAME')
-# db = dynamo_context.create_dynamo_local_context()
-db = dynamo_context.create_dynamo_remote_context()
+db = dynamo_context.create_dynamo_local_context()
+# db = dynamo_context.create_dynamo_remote_context()
 
 
 @app.route('/Employee', methods=['PUT'])
@@ -173,7 +173,7 @@ def delete_employee():
 
 
 if __name__ == '__main__':
-    # export FLASK_APP=app.py
+    # export FLASK_APP=src/app.py
     # export FLASK_ENV=development
     # flask run
     app.run(debug=True, host='0.0.0.0')

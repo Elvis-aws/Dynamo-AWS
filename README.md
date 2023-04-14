@@ -4,10 +4,9 @@
     # source env/bin/activate
     # pip3 install -r requirements.txt
     # pip3 freeze > requirements.txt
-    # Navigate to src/app
 # On local env
     # set db = dynamo_context.create_dynamo_local_context()
-    # export FLASK_APP=app.py
+    # export FLASK_APP=src/app.py
     # export FLASK_ENV=development
     # flask run
 # On aws elasticbeanstalk env

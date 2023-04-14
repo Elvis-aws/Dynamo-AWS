@@ -5,3 +5,5 @@ dynamodb_local_latest
 env
 logs
 request
+.pytest_cache
+buildspec.yaml

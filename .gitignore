@@ -8,3 +8,4 @@ src/.idea
 !.elasticbeanstalk/*.global.yml
 env
 apiTests/.pytest_cache
+.pytest_cache

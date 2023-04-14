@@ -1,0 +1,31 @@
+version: 0.2
+
+phases:
+    install:
+        runtime-versions:
+            python: 3.9
+        commands:
+            - echo "installed runtime-versions"
+            - pip3 install pytest
+    pre_build:
+        commands:
+            - echo "Pre-build phase started"
+    build:
+        on-failure: ABORT
+        commands:
+            - echo "Test phase started"
+            - python -m pytest src/unit_test.py --junitxml=reports/pytest_reports.xml
+    post_build:
+        commands:
+            - echo "Test phase completed"
+
+reports:
+  pytest_reports:
+    files:
+      - pytest_reports.xml
+    base-directory: reports
+    file-format: JUNITXML
+
+artifacts:
+  files:
+    - buildspec.yaml

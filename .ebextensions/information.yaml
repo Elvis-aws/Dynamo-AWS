@@ -19,3 +19,14 @@ aws:autoscaling:updatepolicy:rollingupdate:
 
 aws:autoscaling:updatepolicy:allatonce:
     Enabled: true
+
+option_settings:
+  aws:autoscaling:updatepolicy:rollingupdate:
+    RollingUpdateEnabled: 'true'
+    MaxBatchSize: '2'
+    MinInstancesInService: '1'
+    PauseTime: PT10M
+    WaitOnResourceSignals: 'true'
+    RollingUpdateType: AdditionalBatch
+    BatchSizePercentage: '50'
+    Timeout: PT30M

@@ -7,3 +7,15 @@ option_settings:
   aws:elasticbeanstalk:environment:process:https:
     Port: '443'
     Protocol: HTTPS
+
+aws:autoscaling:updatepolicy:rollingupdate:
+    MaxBatchSize: '1'
+    MinInstancesInService: '1'
+    PauseTime: null
+    RollingUpdateEnabled: 'true'
+    RollingUpdateType: Health
+    Timeout: PT30M
+
+
+aws:autoscaling:updatepolicy:allatonce:
+    Enabled: true

@@ -42,3 +42,8 @@
   not maintained by Elastic Beanstalk if your application uses one. Because if the environment has an
   RDS DB instance attached to it, the data will not transfer over to the second environment and will be
   lost if the original environment is terminated
+
+
+
+aws:autoscaling:updatepolicy:allatonce:
+    Enabled: true

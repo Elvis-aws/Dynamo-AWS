@@ -1,32 +1,58 @@
-option_settings:
-  aws:elbv2:listener:443:
-    DefaultProcess: https
-    ListenerEnabled: 'true'
-    Protocol: HTTPS
-    SSLCertificateArns: arn:aws:acm:us-east-2:123456789012:certificate/21324896-0fa4-412b-bf6f-f362d6eb6dd7
-  aws:elasticbeanstalk:environment:process:https:
-    Port: '443'
-    Protocol: HTTPS
+
+aws:elbv2:listener:443:
+  DefaultProcess: https
+  ListenerEnabled: 'true'
+  Protocol: HTTPS
+  SSLCertificateArns: arn:aws:acm:us-east-2:123456789012:certificate/21324896-0fa4-412b-bf6f-f362d6eb6dd7
+aws:elasticbeanstalk:environment:process:https:
+  Port: '443'
+  Protocol: HTTPS
+
+
+# Batch size is the number of instances
+# It deploys on each instance and calls it Batch 1, Batch 2 and Batch 3
+# Then it does health check on the instance
+# It the registers the batch to the auto-scalling group
+# If an instance is unhealthy, it removes and replaces with a healthy instance
 
 aws:autoscaling:updatepolicy:rollingupdate:
-    MaxBatchSize: '1'
-    MinInstancesInService: '1'
+    MaxBatchSize: '5'
+    MinInstancesInService: '2'
     PauseTime: null
     RollingUpdateEnabled: 'true'
     RollingUpdateType: Health
     Timeout: PT30M
+aws:elasticbeanstalk:command:
+    BatchSize: '20'
+    BatchSizeType: Percentage
+    DeploymentPolicy: Rolling
+    IgnoreHealthCheck: 'false'
+    Timeout: '600'
+aws:elasticbeanstalk:command:
+    BatchSize: '20'
+    BatchSizeType: Percentage
+    DeploymentPolicy: RollingWithAdditionalBatch
+    IgnoreHealthCheck: 'false'
+    Timeout: '600'
+aws:elasticbeanstalk:container:python:
+    NumProcesses: '1'
+    NumThreads: '15'
+aws:elasticbeanstalk:command:
+    BatchSize: '20'
+    BatchSizeType: Percentage
+    DeploymentPolicy: AllAtOnce
+    IgnoreHealthCheck: 'false'
+    Timeout: '600'
+aws:elasticbeanstalk:command:
+    BatchSize: '20'
+    BatchSizeType: Percentage
+    DeploymentPolicy: Immutable
+    IgnoreHealthCheck: 'false'
+    Timeout: '600'
 
-
-aws:autoscaling:updatepolicy:allatonce:
-    Enabled: true
-
-option_settings:
-  aws:autoscaling:updatepolicy:rollingupdate:
-    RollingUpdateEnabled: 'true'
-    MaxBatchSize: '2'
-    MinInstancesInService: '1'
-    PauseTime: PT10M
-    WaitOnResourceSignals: 'true'
-    RollingUpdateType: AdditionalBatch
-    BatchSizePercentage: '50'
-    Timeout: PT30M
+aws:elasticbeanstalk:command:
+    BatchSize: '20'
+    BatchSizeType: Percentage
+    DeploymentPolicy: TrafficSplitting
+    IgnoreHealthCheck: 'false'
+    Timeout: '600'

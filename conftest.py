@@ -1,5 +1,5 @@
 import pytest
-from utils.context import Context
+from src.config.context import Context
 from pytest_harvest import saved_fixture
 
 

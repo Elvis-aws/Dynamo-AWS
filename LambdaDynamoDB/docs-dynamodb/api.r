@@ -82,7 +82,7 @@ DynamoDB APIs
         ****************************
         Filter expressions for query
         ****************************
-                - same as above
+                - Filters results based on a specific attribute e.g begins with, ends with.
     *************
     Updating data
     *************

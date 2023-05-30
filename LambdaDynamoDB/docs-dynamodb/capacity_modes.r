@@ -32,16 +32,16 @@ Capacity
                         - Strong Consistency (99.99 requested data is retrieved by application). Dynamodb checks all
                           read replicas and the most recently modified item is returned. At least two reads are
                           performed on the replicas
-                    - one RCU represents
+                    - One RCU represents
                         1 strongly consistent read per second for an item up to 4 KB in size i.e. 2 x cost of eventually
                         consistent reads
                         How to calculate RCUs for strongly consistent
-                            Round data up to nearest 4
-                            Divide data bt 4
+                            Round data up to nearest 4 KB
+                            Divide data by 4
                             Times by number of reads
                         2 eventually consistent reads per second, for an item up to 4 KB in size
                         How to calculate RCUs for eventually consistent
-                            Round data up to nearest 4
+                            Round data up to nearest 4 KB
                             Divide data bt 4
                             Times by number of reads
                             Divide final number by two

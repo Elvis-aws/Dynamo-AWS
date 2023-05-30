@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: AWS CloudFormation Template to create global tables
+Resources:
+ globalTableExample:
+   Type: 'AWS::DynamoDB::GlobalTable'
+   Properties:
+     TableName: mytable
+    AttributeDefinitions:
+     - AttributeName: PK
+     - AttributeType: S
+    KeySchema:
+     - AttributeName: PK
+     - KeyType: HASH
+    BillingMode: PAY_PER_REQUEST
+    ServiceToken:
+    StreamSpecification:
+    StreamViewType: NEW_AND_OLD_IMAGES
+    SSESpecification:
+    SSEEnabled: true
+    SSEType: "KMS"
+    Replicas:
+     - Region: us-east-1
+    PointInTimeRecoverySpecification:
+    PointInTimeRecoveryEnabled: true
+    SSESpecification:
+    KMSMasterKeyId: alias/dynamodb-key-east
+    Tags:
+    - Key: Name
+    Value: mytable
+    - Key: Region
+    Value: east
+   - Region: us-west-1
+    PointInTimeRecoverySpecification:
+    PointInTimeRecoveryEnabled: true
+    SSESpecification:
+    KMSMasterKeyId: alias/dynamodb-key-west
+    Tags:
+    - Key: Name
+    Value: mytable
+    - Key: Region
+    Value: west
